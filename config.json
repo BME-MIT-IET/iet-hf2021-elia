@@ -1,0 +1,21 @@
+{
+    "token": "NzAyOTU1Nzg1ODY0NDc4ODAw.XqHklw.84Cc1BaZCalt7HCppGaBw79P4V4",
+    "prefix": "!",
+    "defaultMusicVolume": "0.4",
+    "messageDisplayTime": "10000",
+    "servers": [
+        {
+            "id": "267640263348846592",
+            "pinTextChannelID": "703148400463314954",
+            "memeTextChannelID": "703131306476699648",
+            "musicVolume": "0.4",
+            "musicControlTextChannelID": "811618747948990535",
+            "botSpamChannelID": "702983707363115018"
+        },
+        {
+            "id": "566310480000581660",
+            "musicVolume": "0.4",
+            "botSpamChannelID": "700393089524564040"
+        }
+    ]
+}
