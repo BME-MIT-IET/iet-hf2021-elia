@@ -8,9 +8,9 @@ Az E.L.I.A. egy JavaScript-ben írt Discord bot, ami a Discord szerverek felhasz
 
 ## Tervek
 A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani a projekten. Mi az alábbiakat választottuk:
--Technológia fókusz
-  -statikus kód ellenőrzés: a projekt JavaScript-ben íródott, amiben nincs statikus ellenőrzés, így ez sokat javít a kód minőségén
-  -build + CI beüzemelése: a jövőre tekintve ezen funkciók megkönnyítik a fejlesztést
--Termék/felhasználó fókusz
-  -nem-funkcionális jellemzők vizsgálata:
-  -BDD tesztek készítése: 
+- Technológia fókusz
+  - statikus kód ellenőrzés: a projekt JavaScript-ben íródott, amiben nincs statikus ellenőrzés, így ez sokat javít a kód minőségén
+  - build + CI beüzemelése: a jövőre tekintve ezen funkciók megkönnyítik a fejlesztést
+- Termék/felhasználó fókusz
+  - nem-funkcionális jellemzők vizsgálata:
+  - BDD tesztek készítése: 
