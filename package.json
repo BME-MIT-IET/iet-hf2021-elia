@@ -4,7 +4,8 @@
     "description": "Experimental Listening Information Android",
     "main": "elia-bot.js",
     "scripts": {
-        "start": "node elia-bot.js"
+        "start": "node elia-bot.js",
+        "test-unit": "mocha --recursive test/unit/"
     },
     "author": "xShipi <sipisipos@gmail.com>",
     "repository": {
@@ -22,5 +23,8 @@
         "yt-search": "2.8.0",
         "ytdl-core": "^4.5.0",
         "ytpl": "2.1.1"
+    },
+    "devDependencies": {
+        "mocha": "^8.4.0"
     }
 }
