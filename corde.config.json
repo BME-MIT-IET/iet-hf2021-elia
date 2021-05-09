@@ -5,5 +5,5 @@
   "guildId": "",
   "channelId": "",
   "botPrefix": "+",
-  "testFiles": ["./test"]
+  "testFiles": ["./test/bdd"]
 }
