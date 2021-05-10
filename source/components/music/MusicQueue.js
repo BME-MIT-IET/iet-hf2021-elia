@@ -418,9 +418,9 @@ class MusicQueue {
         else this.musicQueueArray.splice(from, to - from + 1);
 
         let reply = "***Removed " + removedSongs.length + " songs:***\n";
-        for (let i = 0; i < removedSongs.length; i++) {
-            let removedSong = this.getYouTubeTitleFromCache(removedSongs[i]);
-            this.removeYouTubeTitleFromCache(this.musicQueueArray[index]);
+        for (let song of removedSongs) {
+            const removedSong = this.getYouTubeTitleFromCache(song);
+            this.removeYouTubeTitleFromCache(song);
             reply += removedSong + "\n";
         }
         this.elia.loggingComponent.log(
