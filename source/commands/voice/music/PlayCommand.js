@@ -13,8 +13,8 @@ class PlayCommand extends Command {
     hasArguments = true;
     async execute(message, args, elia) {
         if (
-            elia.musicComponent.messageSenderHasRightPermissions(message) &&
-            elia.musicComponent.messageSenderInVoiceChannel(message)
+            elia.musicComponent.messageSenderInVoiceChannel(message) &&
+            elia.musicComponent.messageSenderHasRightPermissions(message)
         ) {
             const voiceChannel = message.member.voice.channel;
             if (validURL(args[0])) {
