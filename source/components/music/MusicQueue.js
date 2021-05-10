@@ -117,10 +117,32 @@ class MusicQueue {
             voiceChannel.id != this.voiceChannel.id
         ) {
             this.voiceChannel = voiceChannel;
-            this.connection = await voiceChannel.join();
+            this.connection = await this.voiceChannel.join();
         }
-
         this.playMusicFromQueue(message, title);
+    }
+
+    async getVoiceChannel(voiceChannel, message) {
+        if (this.elia.dataComponent.getRadioMode()) {
+            const radioChannel = this.elia.dataComponent.getRadioChannel(
+                message.channel.guild.id
+            );
+            if (radioChannel) {
+                const radioVoiceChannel = this.elia.bot.channels.cache.get(
+                    radioChannel
+                );
+                if (radioVoiceChannel) {
+                    return radioVoiceChannel;
+                } else {
+                    this.elia.messageComponent.reply(
+                        message,
+                        "Radio channel not avaliable for current server!"
+                    );
+                }
+            }
+        } else {
+            return voiceChannel;
+        }
     }
 
     /**
@@ -277,7 +299,11 @@ class MusicQueue {
             this.musicQueueArray.push(url) == 1 &&
             this.isPlayingMusic == false
         ) {
-            this.playMusic(message, message.member.voice.channel, url);
+            const voiceChannel = await this.getVoiceChannel(
+                message.member.voice.channel,
+                message
+            );
+            this.playMusic(message, voiceChannel, url);
         }
     }
 
@@ -614,7 +640,8 @@ class MusicQueue {
         if (
             this.voiceChannel != null &&
             this.voiceChannel.members.has(this.elia.bot.user.id) &&
-            this.voiceChannel.members.size == 1
+            this.voiceChannel.members.size == 1 &&
+            !this.elia.dataComponent.getRadioMode()
         ) {
             this.elia.loggingComponent.log("Elia was left alone...");
             return false;

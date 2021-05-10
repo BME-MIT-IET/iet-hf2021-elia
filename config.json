@@ -1,7 +1,8 @@
 {
     "token": "",
-    "prefix": "!",
+    "prefix": "+",
     "devMode": true,
+    "radioMode": true,
     "defaultMusicVolume": "0.4",
     "messageDisplayTime": "10000",
     "servers": [
@@ -24,7 +25,8 @@
             "memeTextChannelID": "841212457682599947",
             "musicVolume": "0.4",
             "musicControlTextChannelID": "811618747948990535",
-            "botSpamChannelID": "840973674362437639"
+            "botSpamChannelID": "840973674362437639",
+            "radioChannelID": "840973674823024641"
         }
     ]
 }
