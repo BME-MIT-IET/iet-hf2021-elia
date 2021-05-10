@@ -295,10 +295,7 @@ class MusicQueue {
         this.elia.loggingComponent.log(
             message.author.username + " queued: " + url
         );
-        if (
-            this.musicQueueArray.push(url) == 1 &&
-            this.isPlayingMusic == false
-        ) {
+        if (this.musicQueueArray.push(url) == 1 && !this.isPlayingMusic) {
             const voiceChannel = await this.getVoiceChannel(
                 message.member.voice.channel,
                 message
