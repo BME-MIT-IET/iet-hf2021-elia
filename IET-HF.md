@@ -17,3 +17,4 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 
 ## Megvalósított funkciók
 - [bdd tesztelés](doc/bdd-testing.md)
+- [statikus kód ellenőrzés](doc/static-code-analysis.md)
