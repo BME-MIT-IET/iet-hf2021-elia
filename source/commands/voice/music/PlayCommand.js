@@ -13,10 +13,14 @@ class PlayCommand extends Command {
     hasArguments = true;
     async execute(message, args, elia) {
         if (
-            elia.musicComponent.messageSenderHasRightPermissions(message) &&
-            elia.musicComponent.messageSenderInVoiceChannel(message)
+            elia.dataComponent.getRadioMode() ||
+            (elia.musicComponent.messageSenderInVoiceChannel(message) &&
+                elia.musicComponent.messageSenderHasRightPermissions(message))
         ) {
-            const voiceChannel = message.member.voice.channel;
+            const voiceChannel = await elia.musicComponent.musicQueue.getVoiceChannel(
+                message.member.voice.channel,
+                message
+            );
             if (validURL(args[0])) {
                 let id = getYouTubePlaylistId(args[0]);
                 if (id != null)
