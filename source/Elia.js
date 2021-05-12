@@ -79,7 +79,7 @@ class Elia {
             // we shouldn't process the message.
             if (
                 !message.content.startsWith(this.dataComponent.getPrefix()) ||
-                message.author.bot
+                (message.author.bot && !this.dataComponent.getDevMode())
             )
                 return;
 
