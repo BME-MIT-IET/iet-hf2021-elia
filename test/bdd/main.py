@@ -74,15 +74,13 @@ async def test_play_then_pause_then_resume_then_skip(interface):
 async def test_queue_two_songs_then_double_skip(interface):
     play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
     queue_embed = get_base_embed(":musical_note: Queued: ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
-    skip_embed = get_base_embed("You skipped a song!")
+    leave_embed = get_base_embed("Bye Bye :smiling_face_with_tear:")
 
     await interface.assert_reply_embed_equals("+play https://www.youtube.com/watch?v=dQw4w9WgXcQ", play_embed)
     await asyncio.sleep(5)
     await interface.assert_reply_embed_equals("+queue https://www.youtube.com/watch?v=dQw4w9WgXcQ", queue_embed)
     await asyncio.sleep(5)
-    await interface.assert_reply_embed_equals("+skip", skip_embed)
-    await asyncio.sleep(5)
-    await interface.assert_reply_embed_equals("+skip", skip_embed)
+    await interface.assert_reply_embed_equals("+leave", leave_embed)
     await asyncio.sleep(1)
 
 
@@ -90,15 +88,13 @@ async def test_queue_two_songs_then_double_skip(interface):
 async def test_play_then_replay_then_double_skip(interface):
     play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
     replay_embed = get_base_embed("You replayed a song!")
-    skip_embed = get_base_embed("You skipped a song!")
+    leave_embed = get_base_embed("Bye Bye :smiling_face_with_tear:")
 
     await interface.assert_reply_embed_equals("+play https://www.youtube.com/watch?v=dQw4w9WgXcQ", play_embed)
     await asyncio.sleep(5)
     await interface.assert_reply_embed_equals("+replay", replay_embed)
     await asyncio.sleep(5)
-    await interface.assert_reply_embed_equals("+skip", skip_embed)
-    await asyncio.sleep(5)
-    await interface.assert_reply_embed_equals("+skip", skip_embed)
+    await interface.assert_reply_embed_equals("+leave", leave_embed)
     await asyncio.sleep(1)
 
 
