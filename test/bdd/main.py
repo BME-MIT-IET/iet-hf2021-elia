@@ -37,6 +37,12 @@ async def test_meme(interface):
 
 
 @test_collector()
+async def test_pin(interface):
+    await interface.assert_reply_contains("+pin pinned", "pinned")
+    await asyncio.sleep(1)
+
+
+@test_collector()
 async def test_play_song_then_skip(interface):
     play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
     skip_embed = get_base_embed("You skipped a song!")
