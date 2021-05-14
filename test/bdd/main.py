@@ -1,3 +1,4 @@
+import asyncio
 import sys
 
 from discord import Embed
@@ -26,6 +27,16 @@ def get_base_embed(embed_title):
 async def test_ping(interface):
     embed = get_base_embed("Pong!")
     await interface.assert_reply_embed_equals("+ping", embed)
+
+
+@test_collector()
+async def test_play_song_then_skip(interface):
+    play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
+    skip_embed = get_base_embed("You skipped a song!")
+
+    await interface.assert_reply_embed_equals("+play https://www.youtube.com/watch?v=dQw4w9WgXcQ", play_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+skip", skip_embed)
 
 
 if __name__ == '__main__':
