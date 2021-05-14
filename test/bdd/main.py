@@ -27,6 +27,7 @@ def get_base_embed(embed_title):
 async def test_ping(interface):
     embed = get_base_embed("Pong!")
     await interface.assert_reply_embed_equals("+ping", embed)
+    await asyncio.sleep(1)
 
 
 @test_collector()
@@ -37,6 +38,7 @@ async def test_play_song_then_skip(interface):
     await interface.assert_reply_embed_equals("+play https://www.youtube.com/watch?v=dQw4w9WgXcQ", play_embed)
     await asyncio.sleep(5)
     await interface.assert_reply_embed_equals("+skip", skip_embed)
+    await asyncio.sleep(1)
 
 
 @test_collector()
@@ -53,6 +55,7 @@ async def test_play_then_pause_then_resume_then_skip(interface):
     await interface.assert_reply_embed_equals("+resume", resume_embed)
     await asyncio.sleep(5)
     await interface.assert_reply_embed_equals("+skip", skip_embed)
+    await asyncio.sleep(1)
 
 
 if __name__ == '__main__':
