@@ -39,5 +39,21 @@ async def test_play_song_then_skip(interface):
     await interface.assert_reply_embed_equals("+skip", skip_embed)
 
 
+@test_collector()
+async def test_play_then_pause_then_resume_then_skip(interface):
+    play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
+    pause_embed = get_base_embed("You paused the music.")
+    resume_embed = get_base_embed("You resumed playing the music.")
+    skip_embed = get_base_embed("You skipped a song!")
+
+    await interface.assert_reply_embed_equals("+play https://www.youtube.com/watch?v=dQw4w9WgXcQ", play_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+pause", pause_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+resume", resume_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+skip", skip_embed)
+
+
 if __name__ == '__main__':
     run_dtest_bot(sys.argv, test_collector)
