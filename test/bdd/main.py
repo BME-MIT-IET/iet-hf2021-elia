@@ -102,5 +102,22 @@ async def test_play_then_replay_then_double_skip(interface):
     await asyncio.sleep(1)
 
 
+@test_collector()
+async def test_play_then_loop_song(interface):
+    play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
+    loop_song_start_embed = get_base_embed("You started looping the current song!")
+    loop_song_stop_embed = get_base_embed("You stopped looping the current song!")
+    leave_embed = get_base_embed("Bye Bye :smiling_face_with_tear:")
+
+    await interface.assert_reply_embed_equals("+play https://www.youtube.com/watch?v=dQw4w9WgXcQ", play_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+loopsong", loop_song_start_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+loopsong", loop_song_stop_embed)
+    await asyncio.sleep(5)
+    await interface.assert_reply_embed_equals("+leave", leave_embed)
+    await asyncio.sleep(1)
+
+
 if __name__ == '__main__':
     run_dtest_bot(sys.argv, test_collector)
