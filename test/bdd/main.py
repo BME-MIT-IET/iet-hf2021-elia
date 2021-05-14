@@ -31,6 +31,12 @@ async def test_ping(interface):
 
 
 @test_collector()
+async def test_meme(interface):
+    await interface.assert_reply_has_image("+meme https://i.redd.it/7ptrlc47tuc51.jpg")
+    await asyncio.sleep(1)
+
+
+@test_collector()
 async def test_play_song_then_skip(interface):
     play_embed = get_base_embed(":musical_note: Now Playing ***https://www.youtube.com/watch?v=dQw4w9WgXcQ***")
     skip_embed = get_base_embed("You skipped a song!")
