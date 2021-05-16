@@ -40,6 +40,23 @@ async def pin_time(interface: TestInterface):
     add_time_to_output("Sent 10 pin requests", datetime.now() - start_time)
 
 @test_collector()
+async def voice_connect_disconnect_time(interface: TestInterface):
+    await interface.send_message("+play https://youtube.com/watch?v=jHkxauiiEWs")
+    connect_start_time: datetime = datetime.now()
+    await interface.wait_for_event("voice_state_update", lambda m, before, after: before.channel == None and after.channel != None)
+    global voice_connect_time_taken
+    voice_connect_time_taken = datetime.now() - connect_start_time
+    add_time_to_output("Sent a play request", datetime.now() - connect_start_time)
+
+    await asyncio.sleep(3)
+    
+    await interface.send_message("+leave")
+    disconnect_start_time: datetime = datetime.now()
+    await interface.wait_for_event("voice_state_update", lambda m, before, after: before.channel != None and after.channel == None)
+    global voice_disconnect_time_taken
+    add_time_to_output("Sent a leave request", datetime.now() - disconnect_start_time)
+
+@test_collector()
 async def write_performance_metrics(interface: TestInterface):
     await interface.send_message("```{}```".format(performance_output))
 
