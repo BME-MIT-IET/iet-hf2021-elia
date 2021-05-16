@@ -21,7 +21,7 @@ def get_base_embed(embed_title):
         )
         .set_footer(
             icon_url="https://cdn.discordapp.com/embed/avatars/1.png",
-            text="ELIA - DEV - 2"
+            text="ELIA - TESTER"
         )
     )
     return base_embed
