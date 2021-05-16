@@ -1,4 +1,5 @@
 node_modules
 .idea
+Pipfile.lock
 .nyc_output
 package-lock.json
