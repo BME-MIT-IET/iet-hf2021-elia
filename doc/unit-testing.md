@@ -9,4 +9,8 @@ A tesztek lefutattása a következő paranccsal lehetséges:
 
 ``` npm run unit-test ```
 
+A tesztek futásának eredménye:
+
+![](./resources/unittest.png)
+
 A kapcsolódó Github issue: [#1](https://github.com/BME-MIT-IET/iet-hf2021-elia/issues/1)
