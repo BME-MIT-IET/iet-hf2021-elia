@@ -103,7 +103,7 @@ class MusicQueue {
      * @param {string} title the YouTube video's title
      */
     async playMusic(message, voiceChannel, url, title = null) {
-        if (voiceChannel == null) return;
+       if (voiceChannel == null) return;
 
         if (this.currentSong != null)
             this.musicQueueArray.unshift(this.currentSong);
@@ -121,6 +121,7 @@ class MusicQueue {
         }
 
         this.playMusicFromQueue(message, title);
+        
     }
 
     /**
