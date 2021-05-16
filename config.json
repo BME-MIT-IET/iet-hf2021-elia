@@ -21,10 +21,10 @@
         },
         {
             "id": "840973674362437632",
-            "pinTextChannelID": "840974603698176003",
-            "memeTextChannelID": "841212457682599947",
+            "pinTextChannelID": "840973674362437639",
+            "memeTextChannelID": "840973674362437639",
             "musicVolume": "0.4",
-            "musicControlTextChannelID": "811618747948990535",
+            "musicControlTextChannelID": "840973674362437639",
             "botSpamChannelID": "840973674362437639",
             "radioChannelID": "840973674823024641"
         }
