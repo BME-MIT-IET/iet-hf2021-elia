@@ -14,3 +14,6 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 - Termék/felhasználó fókusz
   - nem-funkcionális jellemzők vizsgálata:
   - BDD tesztek készítése: 
+
+## Megvalósított funkciók
+- [bdd tesztelés](doc/bdd-testing.md)
