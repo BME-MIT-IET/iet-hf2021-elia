@@ -17,6 +17,7 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
   - BDD tesztek készítése: 
 
 ## Megvalósított funkciók
-- [bdd tesztelés](doc/bdd-testing.md)
 - [statikus kód ellenőrzés](doc/static-code-analysis.md)
 - [egységtesztelés](doc/unit-testing.md)
+- [build + CI beüzemelése](doc/ci.md)
+- [nemfunkcionális tesztelés](doc/nonfunctional-testing.md)
