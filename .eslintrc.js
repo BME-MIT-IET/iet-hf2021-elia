@@ -4,14 +4,13 @@ module.exports = {
         es2021: true,
         node: true,
     },
-    extends: "eslint:recommended",
+    extends: ["eslint:recommended", "plugin:jsdoc/recommended"],
     parserOptions: {
         ecmaVersion: 12,
     },
     parser: "babel-eslint",
     rules: {
         indent: ["error", 4],
-        "linebreak-style": ["error", "windows"],
         quotes: ["error", "double"],
         semi: ["error", "always"],
     },
