@@ -21,3 +21,4 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 - [egységtesztelés](doc/unit-testing.md)
 - [build + CI beüzemelése](doc/ci.md)
 - [nemfunkcionális tesztelés](doc/nonfunctional-testing.md)
+- [bdd tesztelés](doc/bdd-testing.md)
