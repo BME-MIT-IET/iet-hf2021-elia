@@ -11,6 +11,12 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 - Technológia fókusz
   - statikus kód ellenőrzés: a projekt JavaScript-ben íródott, amiben nincs statikus ellenőrzés, így ez sokat javít a kód minőségén
   - build + CI beüzemelése: a jövőre tekintve ezen funkciók megkönnyítik a fejlesztést
+  - Egységtesztek készítése: 
 - Termék/felhasználó fókusz
   - nem-funkcionális jellemzők vizsgálata:
   - BDD tesztek készítése: 
+
+## Megvalósított funkciók
+- [bdd tesztelés](doc/bdd-testing.md)
+- [statikus kód ellenőrzés](doc/static-code-analysis.md)
+- [egységtesztelés](doc/unit-testing.md)
