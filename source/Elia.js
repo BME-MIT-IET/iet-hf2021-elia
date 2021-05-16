@@ -132,7 +132,7 @@ class Elia {
     /**
      * Returns the bot's configured token.
      *
-     * @returns {string}
+     * @returns {string} the bot's token
      */
     getToken() {
         return this.dataComponent.getToken();

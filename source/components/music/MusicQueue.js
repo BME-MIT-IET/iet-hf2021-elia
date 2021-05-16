@@ -14,6 +14,7 @@ class MusicQueue {
     constructor(elia) {
         /**
          * The ELIA object
+         *
          * @type {Elia}
          */
         this.elia = elia;
@@ -108,7 +109,7 @@ class MusicQueue {
      * @param {string} title the YouTube video's title
      */
     async playMusic(message, voiceChannel, url, title = null) {
-       if (voiceChannel == null) return;
+        if (voiceChannel == null) return;
 
         if (this.currentSong != null)
             this.musicQueueArray.unshift(this.currentSong);
@@ -125,9 +126,15 @@ class MusicQueue {
             this.connection = await this.voiceChannel.join();
         }
         this.playMusicFromQueue(message, title);
-        
     }
 
+    /**
+     * Get the vocie channel from message
+     *
+     * @param {VoiceChannel} voiceChannel the voice channel the user is in
+     * @param {Message} message the message that has the music command
+     * @returns {VoiceChannel} the new music voice channel
+     */
     async getVoiceChannel(voiceChannel, message) {
         if (this.elia.dataComponent.getRadioMode()) {
             const radioChannel = this.elia.dataComponent.getRadioChannel(
@@ -301,7 +308,7 @@ class MusicQueue {
             message.author.username + " queued: " + url
         );
         if (this.musicQueueArray.push(url) == 1 && !this.isPlayingMusic) {
-            const voiceChannel = await this.getVoiceChannel(
+            const voiceChannel = this.getVoiceChannel(
                 message.member.voice.channel,
                 message
             );

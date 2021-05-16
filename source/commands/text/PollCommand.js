@@ -18,6 +18,7 @@ class PollCommand extends Command {
             );
 
         let command = args.join(" ");
+        // eslint-disable-next-line quotes
         let rawPollArgs = command.split('" "');
 
         let pollArgs = new Array();

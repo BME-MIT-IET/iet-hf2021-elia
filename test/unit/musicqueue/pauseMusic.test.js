@@ -1,4 +1,5 @@
-const assert = require('assert');
+/* eslint-disable no-undef */
+const assert = require("assert");
 const sinon = require("sinon");
 const { VoiceChannel } = require("discord.js");
 const Elia = require("../../../source/Elia.js");
@@ -16,28 +17,36 @@ var mockUser;
 var mockMessage;
 var musicQueue;
 
-describe('MusicQueue', function() {
-    describe('#pauseMusic()', function() {
-        beforeEach(function() {
+describe("MusicQueue", function () {
+    describe("#pauseMusic()", function () {
+        beforeEach(function () {
             mockMessageComponent = { reply: function () {} };
             spyReply = sinon.spy(mockMessageComponent, "reply");
             mockDispatcher = { pause: function () {} };
-            voiceConnection = { dispatcher : mockDispatcher };
+            voiceConnection = { dispatcher: mockDispatcher };
             spyPause = sinon.spy(mockDispatcher, "pause");
             mockLoggingComponent = { log: function () {} };
-            spyLog = sinon.spy(mockLoggingComponent, "log");            
-            mockUser = { username : String };
-            mockMessage = { author : mockUser };
-            musicQueue = new MusicQueue(new Elia(null, null, mockLoggingComponent, null, mockMessageComponent));
+            spyLog = sinon.spy(mockLoggingComponent, "log");
+            mockUser = { username: String };
+            mockMessage = { author: mockUser };
+            musicQueue = new MusicQueue(
+                new Elia(
+                    null,
+                    null,
+                    mockLoggingComponent,
+                    null,
+                    mockMessageComponent
+                )
+            );
         });
 
-        it('musicQueue.isPaused was true', function() {
+        it("musicQueue.isPaused was true", function () {
             musicQueue.isPaused = true;
             musicQueue.pauseMusic(mockMessage);
             assert(spyReply.calledOnce);
         });
-        
-        it('musicQueue.isPaused was false', function() {
+
+        it("musicQueue.isPaused was false", function () {
             musicQueue.isPaused = false;
             musicQueue.voiceChannel = voiceChannel;
             musicQueue.connection = voiceConnection;
