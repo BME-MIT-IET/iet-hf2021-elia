@@ -19,3 +19,4 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 ## Megvalósított funkciók
 - [statikus kód ellenőrzés](doc/static-code-analysis.md)
 - [egységtesztelés](doc/unit-testing.md)
+- [build + CI beüzemelése](doc/ci.md)
