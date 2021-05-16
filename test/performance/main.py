@@ -24,6 +24,14 @@ async def ping_time(interface: TestInterface):
     add_time_to_output("Sent 10 ping requests", datetime.now() - start_time)
 
 @test_collector()
+async def meme_time(interface: TestInterface):
+    start_time: datetime = datetime.now()
+    for i in range(0, 10):
+        await interface.assert_reply_has_image("+meme https://i.redd.it/7ptrlc47tuc51.jpg")
+    global meme_time_taken
+    add_time_to_output("Sent 10 memes", datetime.now() - start_time)
+
+@test_collector()
 async def write_performance_metrics(interface: TestInterface):
     await interface.send_message("```{}```".format(performance_output))
 
