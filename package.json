@@ -5,7 +5,8 @@
     "main": "elia-bot.js",
     "scripts": {
         "start": "node elia-bot.js",
-        "test-unit": "mocha --recursive test/unit/"
+        "test-unit": "mocha --recursive test/unit/",
+        "nyc": "nyc mocha --recursive test/"
     },
     "author": "xShipi <sipisipos@gmail.com>",
     "repository": {
@@ -26,6 +27,7 @@
     },
     "devDependencies": {
         "mocha": "^8.4.0",
+        "nyc": "^15.1.0",
         "sinon": "^10.0.0"
     }
 }
