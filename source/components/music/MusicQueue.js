@@ -23,6 +23,7 @@ class MusicQueue {
 
     /**
      * Array of YouTube links
+     *
      * @type {Array<string>}
      */
     musicQueueArray = new Array();
@@ -31,21 +32,25 @@ class MusicQueue {
      *
      * Key is YouTube ID,
      * Value is the title
+     *
      * @type {Map<string,string>}
      */
     titleMap = new Map();
     /**
      * YouTube link to the last song
+     *
      * @type {?string}
      */
     lastSong = null;
     /**
      * YouTube link to the current song
+     *
      * @type {?string}
      */
     currentSong = null;
     /**
      * The current song's name
+     *
      * @type {?string}
      */
     currentSongName = null;
@@ -117,11 +122,32 @@ class MusicQueue {
             voiceChannel.id != this.voiceChannel.id
         ) {
             this.voiceChannel = voiceChannel;
-            this.connection = await voiceChannel.join();
+            this.connection = await this.voiceChannel.join();
         }
-
         this.playMusicFromQueue(message, title);
         
+    }
+
+    async getVoiceChannel(voiceChannel, message) {
+        if (this.elia.dataComponent.getRadioMode()) {
+            const radioChannel = this.elia.dataComponent.getRadioChannel(
+                message.channel.guild.id
+            );
+            if (radioChannel) {
+                const radioVoiceChannel =
+                    this.elia.bot.channels.cache.get(radioChannel);
+                if (radioVoiceChannel) {
+                    return radioVoiceChannel;
+                } else {
+                    this.elia.messageComponent.reply(
+                        message,
+                        "Radio channel not avaliable for current server!"
+                    );
+                }
+            }
+        } else {
+            return voiceChannel;
+        }
     }
 
     /**
@@ -151,7 +177,7 @@ class MusicQueue {
     /**
      * Stop's playing music
      *
-     * @param {Message} message
+     * @param {Message} message the message that requested to stop the music
      */
     stopMusic(message) {
         this.musicQueueArray = new Array();
@@ -278,7 +304,11 @@ class MusicQueue {
             this.musicQueueArray.push(url) == 1 &&
             this.isPlayingMusic == false
         ) {
-            this.playMusic(message, message.member.voice.channel, url);
+            const voiceChannel = await this.getVoiceChannel(
+                message.member.voice.channel,
+                message
+            );
+            this.playMusic(message, voiceChannel, url);
         }
     }
 
@@ -524,7 +554,7 @@ class MusicQueue {
      * Get's the video's title from the cache, if avaliable
      *
      * @param {string} url the YouTube URL
-     * @returns  "Title not cached yet." or the title i found in the cache
+     * @returns {string} "Title not cached yet." or the title i found in the cache
      */
     getYouTubeTitleFromCache(url) {
         let title = this.titleMap.get(url);
@@ -615,7 +645,8 @@ class MusicQueue {
         if (
             this.voiceChannel != null &&
             this.voiceChannel.members.has(this.elia.bot.user.id) &&
-            this.voiceChannel.members.size == 1
+            this.voiceChannel.members.size == 1 &&
+            !this.elia.dataComponent.getRadioMode()
         ) {
             this.elia.loggingComponent.log("Elia was left alone...");
             return false;
