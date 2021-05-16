@@ -4,3 +4,4 @@ Pipfile.lock
 .nyc_output
 package-lock.json
 coverage
+.vscode
