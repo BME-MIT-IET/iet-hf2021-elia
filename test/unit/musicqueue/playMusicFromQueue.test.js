@@ -1,8 +1,9 @@
-const assert = require('assert');
-const { Message } = require('discord.js');
+/* eslint-disable no-undef */
+const assert = require("assert");
+const { Message } = require("discord.js");
 const sinon = require("sinon");
-const MusicQueue = require('../../../source/components/music/MusicQueue');
-const Elia = require('../../../source/Elia');
+const MusicQueue = require("../../../source/components/music/MusicQueue");
+const Elia = require("../../../source/Elia");
 
 var message = Message;
 var mockMusicQueueArray;
@@ -12,20 +13,31 @@ var mockActivityDisplayComponent;
 var spySetMusicPlaying;
 var musicQueue;
 
-describe('MusicQueue', function() {
-    describe('#playMusicFromQueue()', function() {
-        this.beforeEach(function() {
-            mockMusicQueueArray = { length : Number, shift : function () { return "currentSong"; }, unshift : function () {} };
+describe("MusicQueue", function () {
+    describe("#playMusicFromQueue()", function () {
+        this.beforeEach(function () {
+            mockMusicQueueArray = {
+                length: Number,
+                shift: function () {
+                    return "currentSong";
+                },
+                unshift: function () {},
+            };
             spyShift = sinon.spy(mockMusicQueueArray, "shift");
             spyUnshift = sinon.spy(mockMusicQueueArray, "unshift");
             mockActivityDisplayComponent = { setMusicPlaying: function () {} };
-            spySetMusicPlaying = sinon.spy(mockActivityDisplayComponent, "setMusicPlaying");
-            musicQueue = new MusicQueue(new Elia(null, null, null, mockActivityDisplayComponent, null));
+            spySetMusicPlaying = sinon.spy(
+                mockActivityDisplayComponent,
+                "setMusicPlaying"
+            );
+            musicQueue = new MusicQueue(
+                new Elia(null, null, null, mockActivityDisplayComponent, null)
+            );
             musicQueue.lastSong = "oldSong";
             musicQueue.currentSong = "newSong";
         });
 
-        it('queue is empty', function() {
+        it("queue is empty", function () {
             mockMusicQueueArray.length = 0;
             musicQueue.musicQueueArray = mockMusicQueueArray;
             musicQueue.playMusicFromQueue(message);
@@ -34,7 +46,7 @@ describe('MusicQueue', function() {
             assert.strictEqual(musicQueue.lastSong, "oldSong");
         });
 
-        it('queue is not empty and isLoopingSong is false', function() {
+        it("queue is not empty and isLoopingSong is false", function () {
             mockMusicQueueArray.length = 5;
             musicQueue.musicQueueArray = mockMusicQueueArray;
             musicQueue.isLoopingSong = false;
@@ -47,7 +59,7 @@ describe('MusicQueue', function() {
             assert(spyUnshift.notCalled);
         });
 
-        it('queue is not empty and isLoopingSong is true', function() {
+        it("queue is not empty and isLoopingSong is true", function () {
             mockMusicQueueArray.length = 5;
             musicQueue.musicQueueArray = mockMusicQueueArray;
             musicQueue.isLoopingSong = true;

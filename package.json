@@ -5,7 +5,7 @@
     "main": "elia-bot.js",
     "scripts": {
         "start": "node elia-bot.js",
-        "nyc": "nyc mocha --recursive test/"
+        "nyc": "nyc mocha --recursive test/",
         "test": "mocha --recursive test/unit/"
     },
     "author": "xShipi <sipisipos@gmail.com>",

@@ -4,6 +4,7 @@ const ytSearch = require("yt-search");
 const validURL = require("../../../components/music/UrlChecker.js");
 const getYouTubePlaylistId = require("../../../components/music/UrlPlaylist.js");
 const { VoiceChannel, Message } = require("discord.js");
+const Elia = require("../../../Elia");
 
 class PlayCommand extends Command {
     name = "play";
@@ -18,17 +19,19 @@ class PlayCommand extends Command {
             (elia.musicComponent.messageSenderInVoiceChannel(message) &&
                 elia.musicComponent.messageSenderHasRightPermissions(message))
         ) {
-            const voiceChannel = await elia.musicComponent.musicQueue.getVoiceChannel(
-                message.member.voice.channel,
-                message
-            );
+            const voiceChannel =
+                await elia.musicComponent.musicQueue.getVoiceChannel(
+                    message.member.voice.channel,
+                    message
+                );
             if (validURL(args[0])) {
-                this.playFromYouTube(voiceChannel, message);
+                this.playFromYouTube(voiceChannel, message, elia, args[0]);
             } else {
                 this.searchAndPlayFromYouTube(
                     voiceChannel,
                     message,
-                    args.join(" ")
+                    args.join(" "),
+                    elia
                 );
             }
         }
@@ -39,9 +42,11 @@ class PlayCommand extends Command {
      *
      * @param {VoiceChannel} voiceChannel the VoiceChannel to join
      * @param {Message} message the message which requested the music
+     * @param {Elia} elia the elia bot
+     * @param {string} url a youtube video url
      */
-    playFromYouTube(voiceChannel, message) {
-        const id = getYouTubePlaylistId(args[0]);
+    playFromYouTube(voiceChannel, message, elia, url) {
+        const id = getYouTubePlaylistId(url);
         if (id != null)
             elia.musicComponent.musicQueue.playYouTubePlaylist(
                 message,
@@ -52,7 +57,7 @@ class PlayCommand extends Command {
             elia.musicComponent.musicQueue.playMusic(
                 message,
                 voiceChannel,
-                args[0]
+                url
             );
     }
 
@@ -62,8 +67,9 @@ class PlayCommand extends Command {
      * @param {VoiceChannel} voiceChannel the VoiceChannel to join
      * @param {Message} message the message which requested the music
      * @param {string} query the search terms in one string
+     * @param {Elia} elia the elia bot
      */
-    searchAndPlayFromYouTube(voiceChannel, message, query) {
+    searchAndPlayFromYouTube(voiceChannel, message, query, elia) {
         const video = this.videoFinder(query);
         if (video) {
             elia.musicComponent.musicQueue.playMusic(
@@ -80,8 +86,8 @@ class PlayCommand extends Command {
     /**
      * Searches a srting on YouTube and get the fist result.
      *
-     * @param {String} query the string to search on YouTube
-     * @returns {?String} the first result of the query or null if no results
+     * @param {string} query the string to search on YouTube
+     * @returns {?string} the first result of the query or null if no results
      */
     async videoFinder(query) {
         const videoResult = await ytSearch(query);

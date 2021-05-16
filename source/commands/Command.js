@@ -60,7 +60,8 @@ class Command {
      * @param {string[]} args the arguments for the commands
      * @param {Elia} elia the Elia object
      */
-    async execute(_message, _args, _elia) {
+    // eslint-disable-next-line no-unused-vars
+    async execute(message, args, elia) {
         // default command, this does nothing.
     }
 }
