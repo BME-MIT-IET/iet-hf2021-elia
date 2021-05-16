@@ -13,3 +13,5 @@ python main.py <bot_id> <tester_token> -c <channel_id> -r all
 ```
 
 Azonban a tesztek nem a `test/bdd/`, hanem a `test/performance/` mappa alatt találhatók. A keretrendszerhez készült egy *pipenv* környezet, melyet a futtatáshoz használni kell.
+
+A kapcsolódó Github issue: [#23](https://github.com/BME-MIT-IET/iet-hf2021-elia/pull/23)
