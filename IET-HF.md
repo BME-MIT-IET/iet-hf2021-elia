@@ -5,6 +5,7 @@ Az E.L.I.A. egy JavaScript-ben írt Discord bot, ami a Discord szerverek felhasz
 - hangeffektek
 - szavazások lebonyolítása
 - üzenetek rögzítése egy külön csatornán
+- Egységtesztek készítése: 
 
 ## Tervek
 A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani a projekten. Mi az alábbiakat választottuk:
@@ -14,7 +15,6 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 - Termék/felhasználó fókusz
   - nem-funkcionális jellemzők vizsgálata:
   - BDD tesztek készítése: 
-  - Egységtesztek készítése: 
 
 ## Megvalósított funkciók
 - [statikus kód ellenőrzés](doc/static-code-analysis.md)
