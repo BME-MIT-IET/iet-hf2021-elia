@@ -12,6 +12,20 @@ test_collector = TestCollector()
 
 performance_output: str = ""
 
+def get_base_embed(embed_title):
+    base_embed = (
+        Embed(
+            title=embed_title,
+            color=6402394,
+            type="rich",
+        )
+        .set_footer(
+            icon_url="https://cdn.discordapp.com/embed/avatars/1.png",
+            text="ELIA - DEV - 2"
+        )
+    )
+    return base_embed
+
 def add_time_to_output(message: str, time_taken: timedelta):
     global performance_output
     performance_output += "{}\n\tTime taken:\t\t\t{}\n\n".format(message, time_taken.total_seconds())
@@ -55,6 +69,15 @@ async def voice_connect_disconnect_time(interface: TestInterface):
     await interface.wait_for_event("voice_state_update", lambda m, before, after: before.channel != None and after.channel == None)
     global voice_disconnect_time_taken
     add_time_to_output("Sent a leave request", datetime.now() - disconnect_start_time)
+
+@test_collector()
+async def play_start_time(interface: TestInterface):
+    play_embed = get_base_embed(":musical_note: Now Playing ***https://youtube.com/watch?v=jHkxauiiEWs***")
+
+    start_time: datetime = datetime.now()
+    await interface.assert_reply_embed_equals("+play https://youtube.com/watch?v=jHkxauiiEWs", play_embed)
+    add_time_to_output("Requested a song, starting time", datetime.now() - start_time)
+    await interface.send_message("+leave")
 
 @test_collector()
 async def write_performance_metrics(interface: TestInterface):
