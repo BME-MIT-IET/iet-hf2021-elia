@@ -111,8 +111,9 @@ class MusicQueue {
     async playMusic(message, voiceChannel, url, title = null) {
         if (voiceChannel == null) return;
 
-        if (this.currentSong != null)
+        if (this.currentSong != null) {
             this.musicQueueArray.unshift(this.currentSong);
+        }
 
         this.musicQueueArray.unshift(url);
         this.cacheYouTubeTitle(url);
