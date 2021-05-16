@@ -32,6 +32,14 @@ async def meme_time(interface: TestInterface):
     add_time_to_output("Sent 10 memes", datetime.now() - start_time)
 
 @test_collector()
+async def pin_time(interface: TestInterface):
+    start_time: datetime = datetime.now()
+    for i in range(0, 10):
+        await interface.assert_reply_contains("+pin pinned", "pinned")
+    global pin_time_taken
+    add_time_to_output("Sent 10 pin requests", datetime.now() - start_time)
+
+@test_collector()
 async def write_performance_metrics(interface: TestInterface):
     await interface.send_message("```{}```".format(performance_output))
 
