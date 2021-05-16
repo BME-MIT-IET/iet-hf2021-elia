@@ -14,6 +14,7 @@ A projekt kezdetleges állapotban van, ezért sok lehetőségünk van javítani 
 - Termék/felhasználó fókusz
   - nem-funkcionális jellemzők vizsgálata:
   - BDD tesztek készítése: 
+  - Egységtesztek készítése: 
 
 ## Megvalósított funkciók
 - [statikus kód ellenőrzés](doc/static-code-analysis.md)
